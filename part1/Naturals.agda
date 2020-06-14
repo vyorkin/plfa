@@ -2,6 +2,8 @@ module plfa.part1.Naturals where
 
 import Relation.Binary.PropositionalEquality as Eq
 
+-- import Data.Nat using (ℕ; zero; suc; _+_; _*_; _^_; _∸_)
+
 open Eq using (_≡_; refl)
 open Eq.≡-Reasoning using (begin_; _≡⟨⟩_; _∎)
 
@@ -183,3 +185,40 @@ infixl 7  _*_
 -- and
 
 -- _+_ 2 3 stands for (_+_ 2) 3.
+
+-- Writing definitions interactively
+
+_+₁_ : ℕ → ℕ → ℕ
+zero +₁ n = n
+suc m +₁ n = suc (m +₁ n)
+
+-- Exercise
+
+data Bin : Set where
+  ⟨⟩ : Bin
+  _O : Bin → Bin
+  _I : Bin → Bin
+
+inc : Bin → Bin
+inc ⟨⟩    = ⟨⟩ O
+inc (x O) = x I
+inc (x I) = inc x O
+
+_ : inc (⟨⟩ I O I I) ≡ ⟨⟩ I I O O
+_ = {!!}
+
+to : ℕ → Bin
+to zero    = ⟨⟩ O
+to (suc m) = (to m) I
+
+
+_ : to 12 ≡ ⟨⟩ I O I I
+_ = {!!}
+
+from : Bin → ℕ
+from ⟨⟩    = 0
+from (x O) = from x
+from (x I) = suc (from x)
+
+_ : from (⟨⟩ I O I I) ≡ 12
+_ = {!!}
