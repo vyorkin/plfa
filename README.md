@@ -1,2 +1,2 @@
 # plfa
-Repo to track my progress working through the PLFA.
+Repo to keep track of my progress working through the PLFA.
