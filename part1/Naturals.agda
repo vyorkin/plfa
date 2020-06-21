@@ -30,9 +30,26 @@ data ℕ : Set where
 
 -- Operations on naturals are recursive functions
 
+-- The empty braces are called a hole,
+-- and 0 is a number used for referring to the hole
+
+-------------------------------------------------------------
+-- Workflow & hotkeys:
+-------------------------------------------------------------
+-- C-c C-l   - load the current file
+-- C-c C-f   - moves to the next hole
+-- C-c C-b   - moves to the previous hole
+-- C-c C-,   - displays information on the required
+--             type of the hole and available free vars
+-- C-c C-c   - case split on a variable
+-- C-c C-SPC - give to the hole at point an expression in it
+-- C-c C-r   - solve the case trivially (refine)
+-- gd        - go to definition (custom key binding)
+-------------------------------------------------------------
+
 _+_ : ℕ → ℕ → ℕ
 zero + n = n
-(suc m) + n = suc (m + n)
+suc m + n = suc (m + n)
 
 -- It works because addition of larger numbers is defined in
 -- terms of addition of smaller numbers. Such a definition is
