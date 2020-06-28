@@ -40,3 +40,40 @@ _ = s≤s (s≤s z≤n)
 --       1 ≤ 3
 -- s≤s ---------
 --       2 ≤ 4
+
+-- We can provide implicit arguments
+-- explicitly by writing them inside curly braces
+
+_ : 2 ≤ 4
+_ = s≤s {1} {3} (s≤s {0} {2} (z≤n {2}))
+
+--     2 ≤     4
+-- suc m ≤ suc n
+-- suc 1 ≤ suc 3
+
+-- One may also identify implicit arugments by name
+
+_ : 2 ≤ 4
+_ = s≤s {n = 3} (s≤s {n = 2} z≤n)
+
+-- Precedence
+
+infix 4 _≤_
+
+inv-s≤s : ∀ {m n : ℕ}
+  → suc m ≤ suc n
+    --------------
+  → m ≤ n
+inv-s≤s (s≤s m≤n) = m≤n
+
+inv-z≤n : ∀ {m : ℕ}
+  → m ≤ zero
+    --------
+  → m ≡ zero
+inv-z≤n z≤n = refl
+    --  z≤n : zero ≤ n
+    --  z≤n : zero ≤ (n : ℕ)
+    --               (zero : ℕ)
+    --  z≤n : zero ≤ zero
+    -- refl :    m ≡ m
+    -- refl : zero ≡ zero
